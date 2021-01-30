@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { PizzasComponent } from './pizzas/pizzas.component';
 
 const routes: Routes = [
-  { path: '', component: PizzasComponent },
+  { path: '', redirectTo: '/pizza', pathMatch: 'full' },
+  { path: 'pizza', component: PizzasComponent },
   { path: 'cart',
     loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
   },

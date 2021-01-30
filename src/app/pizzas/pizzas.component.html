@@ -1,1 +1,7 @@
-<p>pizzas works!</p>
+<ul class="pizzas">
+  <li *ngFor="let pizza of pizzas">
+    <a routerLink="/detail/{{pizza.id}}">
+      <span class="badge">{{pizza.name}}</span>
+    </a>
+  </li>
+</ul>

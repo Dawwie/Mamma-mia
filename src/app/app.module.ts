@@ -1,20 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
+import { PizzasModule } from './pizzas/pizzas.module';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { PizzasComponent } from './pizzas/pizzas.component';
-import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PizzasComponent,
-    CartComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PizzasModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
