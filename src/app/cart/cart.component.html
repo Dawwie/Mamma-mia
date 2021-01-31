@@ -25,7 +25,7 @@
         <hr style="border-top: 2px solid #db8b00">
         <span *ngIf="selectedPizzas">Razem: {{total()}}</span>
     </div>
-    <div *ngIf="selectedPizzas" style="width:15vw; margin-top: 2em">
+    <div *ngIf="selectedPizzas.length !== 0" style="width:15vw; margin-top: 2em">
     <button outline nbButton fullWidth status="warning" (click)="orderPizza()">Zamów</button>
     </div>
 </div>

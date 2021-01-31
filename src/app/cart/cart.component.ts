@@ -46,7 +46,7 @@ export class CartComponent implements OnInit {
   showToast(duration: number, status: NbComponentStatus): void {
     this.toastrService.show(
       'Przyblizony czas realizacji zamówienia to 1h 30min',
-      'Zamówienie zostało złożone', 
+      'Zamówienie zostało złożone',
       {duration});
   }
 
