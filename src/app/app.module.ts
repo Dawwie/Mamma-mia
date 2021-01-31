@@ -6,6 +6,9 @@ import { PizzasModule } from './pizzas/pizzas.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbActionsModule, NbTooltipModule} from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,14 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     PizzasModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbSidebarModule,
+    NbEvaIconsModule,
+    NbActionsModule,
+    NbTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

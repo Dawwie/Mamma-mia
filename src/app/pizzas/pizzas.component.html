@@ -1,9 +1,30 @@
-<ul class="pizzas" >
-  <li *ngFor="let pizza of pizzas; trackBy: identify" style="border: 1px solid black; margin: 1em">
-    <a routerLink="/detail/{{pizza.id}}">
-      <span class="badge">{{pizza.name}}</span>
-      <p>{{pizza.price.toLocaleString("pl", {style: "currency", currency: "PLN"})}}</p>
-    </a>
-    <button class="add" title="Add to cart" (click)="addProductToCart(pizza)">+</button>
-  </li>
-</ul>
+<div>
+    <h2 style="text-align:center;">Menu</h2>
+    <div class="container">
+        <nb-card
+                #pizzas
+                accent="warning"
+                *ngFor="let pizza of pizzas; trackBy: identify"
+                class="card">
+            <nb-card-header>{{pizza.name}}</nb-card-header>
+            <nb-card-body style="padding: 0px; margin: 0px;">
+            <img src="../assets/pizza.jpg" alt="pizza">
+            </nb-card-body>
+            <nb-card-footer style="display:flex">
+                <span>Cena: {{pizza.price.toLocaleString("pl", {style: "currency", currency: "PLN"})}}</span>
+                <span class="flex-expand"></span>
+                <button
+                    nbTooltip="Dodaj to koszyka"
+                    nbTooltipPlacement="top"
+                    nbTooltipStatus="warning"
+                    outline shape="round"
+                    size="tiny"
+                    nbButton
+                    status="warning"
+                    (click)="addProductToCart(pizza)">
+                <nb-icon icon="plus-outline"></nb-icon>
+                </button>
+            </nb-card-footer>
+        </nb-card>
+    </div>
+</div>

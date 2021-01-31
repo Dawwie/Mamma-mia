@@ -1,5 +1,29 @@
-<a routerLink="" ><h1>{{title}}</h1></a>
-<nav>
-  <a routerLink="/cart">Cart</a>
-</nav>
-<router-outlet></router-outlet>
+<nb-layout >
+  <nb-layout-header fixed style="width:100%">
+  <a routerLink="" style="text-decoration: none;">
+    <h2>
+      <span style="color: #db8b00;">Mamma</span>
+      <span style="font-weight: lighter;">Mia</span>
+    </h2>
+  </a>
+  <span class="flex-expand"></span>
+  <nb-actions size="medium" >
+      <nb-action
+        icon="shopping-cart-outline"
+        nbTooltip="Koszyk"
+        nbTooltipPlacement="left"
+        nbTooltipStatus="warning"
+        routerLink="/cart">
+      </nb-action>
+  </nb-actions>
+  </nb-layout-header>
+
+  <nb-layout-column >
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+    <small>&copy; Copyright {{currentYear}} - MammaMia</small>
+  </nb-layout-footer>
+
+</nb-layout>

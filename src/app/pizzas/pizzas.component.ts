@@ -9,7 +9,7 @@ import { PizzasService } from '../services/pizza.service';
   styleUrls: ['./pizzas.component.scss']
 })
 export class PizzasComponent implements OnInit {
-  pizzas: Pizza[];
+  public pizzas: Pizza[];
   private selectedPizzas: Array<Pizza> = []
 
   constructor(private pizzaService: PizzasService) { }
