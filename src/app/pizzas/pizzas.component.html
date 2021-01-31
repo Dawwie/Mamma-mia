@@ -1,7 +1,9 @@
-<ul class="pizzas">
-  <li *ngFor="let pizza of pizzas">
+<ul class="pizzas" >
+  <li *ngFor="let pizza of pizzas; trackBy: identify" style="border: 1px solid black; margin: 1em">
     <a routerLink="/detail/{{pizza.id}}">
       <span class="badge">{{pizza.name}}</span>
+      <p>{{pizza.price.toLocaleString("pl", {style: "currency", currency: "PLN"})}}</p>
     </a>
+    <button class="add" title="Add to cart" (click)="addProductToCart(pizza)">+</button>
   </li>
 </ul>
