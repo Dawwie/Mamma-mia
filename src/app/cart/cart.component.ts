@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pizza } from '../interfaces/pizza';
 import { PizzasService } from '../services/pizza.service';
-import { NbComponentStatus, NbToastrService } from '@nebular/theme';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-cart',
@@ -40,10 +40,10 @@ export class CartComponent implements OnInit {
     }
     this.pizzasService
       .orderPizza(orderDTO)
-      .subscribe(() => this.showToast(3000,"success"));
+      .subscribe(() => this.showToast(3000));
   }
 
-  showToast(duration: number, status: NbComponentStatus): void {
+  showToast(duration: number): void {
     this.toastrService.show(
       'Przyblizony czas realizacji zamówienia to 1h 30min',
       'Zamówienie zostało złożone',
