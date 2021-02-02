@@ -2,52 +2,60 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of, BehaviorSubject} from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, finalize } from 'rxjs/operators';
 
 import { Pizza, Order } from '../interfaces/Pizza';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PizzasService {
-  private pizzasUrl: string = 'http://localhost:3333/api/pizza';  // URL to pizza
-  private orderUrl: string = 'http://localhost:3333/api/order';  // URL to order
-  private selectedPizzas$: BehaviorSubject<Array<Pizza>> = new BehaviorSubject(null);
-  private httpOptions: {[key: string]: any} = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  private static PIZZAS_URL: string = 'http://localhost:3333/api/pizza'; // URL to pizza
+  private static ORDER_URL: string = 'http://localhost:3333/api/order'; // URL to order
+  private selectedPizzas$: BehaviorSubject<Array<Pizza>> = new BehaviorSubject<
+    Array<Pizza>
+  >([]);
+  private httpOptions: { [key: string]: any } = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+  public isLoading = true;
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
-      return of(result as T);
-    };
-  }
+  constructor(private http: HttpClient) {}
 
   public getSelectedPizzas(): Observable<Array<Pizza>> {
-      return this.selectedPizzas$.asObservable();
+    return this.selectedPizzas$.asObservable();
   }
 
   public setSelectedPizzas(pizzas: Array<Pizza>) {
-      this.selectedPizzas$.next(pizzas);
+    this.selectedPizzas$.next(pizzas);
   }
 
-  constructor(private http: HttpClient) { }
-
-  getPizzas(): Observable<Array<Pizza>> {
-    return this.http.get<Array<Pizza>>(this.pizzasUrl)
+  public getPizzas(): Observable<Array<Pizza>> {
+    return this.http
+      .get<Array<Pizza>>(PizzasService.PIZZAS_URL)
       .pipe(
-        catchError(this.handleError<Array<Pizza>>('getPizzas', []))
+        catchError(this.handleError<Array<Pizza>>('getPizzas', [])),
+        finalize(() => {
+          this.isLoading = false;
+        })
       );
   }
 
-  orderPizza(order: Order): Observable<Order> {
-    return this.http.post<Order>(this.orderUrl, order, this.httpOptions)
-    .pipe(
-      catchError(this.handleError('addHero', order))
-    );
+  public orderPizza(order: Order): Observable<Order> {
+    return this.http
+      .post<Order>(PizzasService.ORDER_URL, order, this.httpOptions)
+      .pipe(catchError(this.handleError<Order>('orderPizza', order)));
+    }
+
+  public isLoadingGetter(): boolean {
+    return this.isLoading
   }
 
-
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
+  }
 
 }

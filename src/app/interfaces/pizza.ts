@@ -6,6 +6,6 @@ export interface Pizza {
   }
 
 export interface Order {
-  pizza: Array<Pizza>
+  pizza: Array<Pizza>,
   total: number
 }

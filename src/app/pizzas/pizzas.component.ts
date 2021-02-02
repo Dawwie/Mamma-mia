@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 import { Pizza } from '../interfaces/pizza';
 import { PizzasService } from '../services/pizza.service';
@@ -6,29 +7,38 @@ import { PizzasService } from '../services/pizza.service';
 @Component({
   selector: 'app-pizzas',
   templateUrl: './pizzas.component.html',
-  styleUrls: ['./pizzas.component.scss']
+  styleUrls: ['./pizzas.component.scss'],
 })
 export class PizzasComponent implements OnInit {
   public pizzas: Pizza[];
-  private selectedPizzas: Array<Pizza> = []
+  private selectedPizzas: Array<Pizza> = [];
 
-  constructor(private pizzaService: PizzasService) { }
+  constructor(private pizzaService: PizzasService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getPizzas();
   }
 
-  getPizzas(): void {
-    this.pizzaService.getPizzas()
-    .subscribe(pizzas => this.pizzas = pizzas)
+  private getPizzas(): void {
+    this.pizzaService
+      .getPizzas()
+      .pipe(take(1))
+      .subscribe((pizzas) => (this.pizzas = pizzas));
+
+    this.pizzaService
+      .getSelectedPizzas()
+      .pipe(take(1))
+      .subscribe((selectedPizzsInCart: Array<Pizza>) => {
+        this.selectedPizzas = selectedPizzsInCart;
+      });
   }
 
-  addProductToCart(pizza: Pizza): void {
-    this.selectedPizzas.push(pizza)
-    this.pizzaService.setSelectedPizzas(this.selectedPizzas)
+  public addProductToCart(pizza: Pizza): void {
+    this.selectedPizzas?.push(pizza);
+    this.pizzaService.setSelectedPizzas(this.selectedPizzas);
   }
 
-  identify(index: number, pizza: Pizza): string {
-    return pizza?.id ?? index.toString()
+  public identify(index: number, pizza: Pizza): string {
+    return !pizza ? null : index.toString() || pizza.id;
   }
 }

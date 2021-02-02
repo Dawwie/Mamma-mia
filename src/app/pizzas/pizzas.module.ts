@@ -1,7 +1,12 @@
 import { PizzasComponent } from './pizzas.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbTooltipModule, NbButtonModule, NbIconModule, NbCardModule, NbSpinnerModule} from '@nebular/theme';
+import {
+  NbTooltipModule,
+  NbButtonModule,
+  NbIconModule,
+  NbCardModule,
+} from '@nebular/theme';
 
 @NgModule({
   declarations: [PizzasComponent],
@@ -11,8 +16,7 @@ import { NbTooltipModule, NbButtonModule, NbIconModule, NbCardModule, NbSpinnerM
     NbButtonModule,
     NbIconModule,
     NbCardModule,
-    NbSpinnerModule
   ],
-  exports: [PizzasComponent]
+  exports: [PizzasComponent],
 })
-export class PizzasModule { }
+export class PizzasModule {}

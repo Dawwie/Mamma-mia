@@ -1,31 +1,50 @@
 <div class="container">
-    <h2 style="margin-top: 0px;">Koszyk</h2>
-    <nb-card accent="warning" *ngFor="let pizza of selectedPizzas; trackBy: identify" class="card">
-        <nb-card-header>{{pizza.name}}</nb-card-header>
-         <nb-card-body style="display: flex">
-            <div style="margin-left: auto;margin-right: 0;">
-                <span>Cena: {{pizza.price.toLocaleString("pl", {style: "currency", currency: "PLN"})}}</span>
-                <span class="flex-expand"></span>
-                <button
-                    nbTooltip="Usuń"
-                    nbTooltipPlacement="right"
-                    nbTooltipStatus="warning"
-                    outline shape="round"
-                    size="tiny"
-                    nbButton
-                    status="warning"
-                    (click)="removeFromCart(pizza.id)"
-                    style="margin-left: 1em">
-                <nb-icon icon="minus-outline"></nb-icon>
-            </button>
-            </div>
-        </nb-card-body>
-    </nb-card>
-    <div style="width:40vw">
-        <hr style="border-top: 2px solid #db8b00">
-        <span *ngIf="selectedPizzas">Razem: {{total()}}</span>
-    </div>
-    <div *ngIf="selectedPizzas.length !== 0" style="width:15vw; margin-top: 2em">
-    <button outline nbButton fullWidth status="warning" (click)="orderPizza()">Zamów</button>
-    </div>
+  <h2 style="margin-top: 0px">Koszyk</h2>
+  <nb-card
+    accent="warning"
+    *ngFor="let pizza of selectedPizzas; trackBy: identify"
+    class="card"
+  >
+    <nb-card-header>{{ pizza.name }}</nb-card-header>
+    <nb-card-body style="display: flex">
+      <div style="margin-left: auto; margin-right: 0">
+        <span
+          >Cena:
+          {{
+            pizza.price.toLocaleString("pl", {
+              style: "currency",
+              currency: "PLN"
+            })
+          }}</span
+        >
+        <span class="flex-expand"></span>
+        <button
+          nbTooltip="Usuń"
+          nbTooltipPlacement="right"
+          nbTooltipStatus="warning"
+          outline
+          shape="round"
+          size="tiny"
+          nbButton
+          status="warning"
+          (click)="removeFromCart(pizza.id)"
+          style="margin-left: 1em"
+        >
+          <nb-icon icon="minus-outline"></nb-icon>
+        </button>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <div style="width: 40vw">
+    <hr style="border-top: 2px solid #db8b00" />
+    <span *ngIf="selectedPizzas">Razem: {{ total() }}</span>
+  </div>
+  <div
+    *ngIf="selectedPizzas?.length !== 0"
+    style="width: 15vw; margin-top: 2em"
+  >
+    <button outline nbButton fullWidth status="warning" (click)="orderPizza()">
+      Zamów
+    </button>
+  </div>
 </div>

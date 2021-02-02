@@ -1,29 +1,32 @@
-<nb-layout >
-  <nb-layout-header fixed style="width:100%">
-  <a routerLink="" style="text-decoration: none;">
-    <h2>
-      <span style="color: #db8b00;">Mamma</span>
-      <span style="font-weight: lighter;">Mia</span>
-    </h2>
-  </a>
-  <span class="flex-expand"></span>
-  <nb-actions size="medium" >
+<nb-layout>
+  <nb-layout-header fixed style="width: 100%">
+    <a routerLink="" style="text-decoration: none">
+      <h2>
+        <span style="color: #db8b00">Mamma</span>
+        <span style="font-weight: lighter">Mia</span>
+      </h2>
+    </a>
+    <span class="flex-expand"></span>
+    <nb-actions size="medium">
       <nb-action
         icon="shopping-cart-outline"
         nbTooltip="Koszyk"
         nbTooltipPlacement="left"
         nbTooltipStatus="warning"
-        routerLink="/cart">
+        routerLink="/cart"
+      >
       </nb-action>
-  </nb-actions>
+    </nb-actions>
   </nb-layout-header>
 
-  <nb-layout-column >
+  <nb-layout-column
+      [nbSpinner]="handleLoading()"
+      nbSpinnerSize="giant"
+      nbSpinnerStatus="warning">
     <router-outlet></router-outlet>
   </nb-layout-column>
 
   <nb-layout-footer fixed>
-    <small>&copy; Copyright {{currentYear}} - MammaMia</small>
+    <small>&copy; Copyright {{ currentYear }} - MammaMia</small>
   </nb-layout-footer>
-
 </nb-layout>

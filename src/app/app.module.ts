@@ -1,3 +1,4 @@
+import { PizzasService } from './services/pizza.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,13 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbActionsModule, NbTooltipModule} from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbSidebarModule,
+  NbActionsModule,
+  NbTooltipModule,
+  NbSpinnerModule,
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,9 +31,10 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbSidebarModule,
     NbEvaIconsModule,
     NbActionsModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbSpinnerModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [PizzasService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
