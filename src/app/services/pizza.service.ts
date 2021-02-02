@@ -18,7 +18,7 @@ export class PizzasService {
   private httpOptions: { [key: string]: any } = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  public isLoading = true;
+  public isLoading: boolean = true;
 
   constructor(private http: HttpClient) {}
 
